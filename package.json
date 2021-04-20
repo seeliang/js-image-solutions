@@ -1,0 +1,8 @@
+{
+  "name": "js-image-solutions",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:seeliang/js-image-solutions.git",
+  "author": "seeliang <hi@sihuiliang.com>",
+  "license": "MIT"
+}
