@@ -13,7 +13,7 @@ var circle = new Konva.Circle({
   y: stage.height() / 2,
   radius: 70,
   fill: 'red',
-  stroke: 'black',
+  stroke: 'green',
   strokeWidth: 4
 });
 
@@ -26,7 +26,20 @@ stage.add(layer);
 // draw the image
 layer.draw();
 
-Konva.Image.fromURL('https://konvajs.org/', (image) => {
-  const illustrationImageContent = this.canvasLayer.toDataURL();
-  console.log(illustrationImageContent)
-});
+ // main API:
+ var imageObj = new Image();
+ imageObj.onload = function () {
+   var apple = new Konva.Image({
+      x: 100,
+      y: 160,
+     image: imageObj,
+     width: 306,
+     height: 88,
+   });
+
+   // add the shape to the layer
+   layer.add(apple);
+   layer.batchDraw();
+ };
+  
+ imageObj.src = 'https://www.apple.com/v/home/t/images/logos/apple-one/logo__dcojfwkzna2q_large_2x.png';
