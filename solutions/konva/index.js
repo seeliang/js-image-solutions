@@ -1,4 +1,3 @@
-const canvasLayer = new Konva.Layer();
 var stage = new Konva.Stage({
   container: 'container',   // id of container <div>
   width: 500,
@@ -26,8 +25,9 @@ stage.add(layer);
 // draw the image
 layer.draw();
 
- // main API:
+ // main API: no need cors
  var imageObj = new Image();
+ imageObj.src = 'https://www.apple.com/v/home/t/images/logos/apple-one/logo__dcojfwkzna2q_large_2x.png';
  imageObj.onload = function () {
    var apple = new Konva.Image({
       x: 100,
@@ -41,5 +41,14 @@ layer.draw();
    layer.add(apple);
    layer.batchDraw();
  };
-  
- imageObj.src = 'https://www.apple.com/v/home/t/images/logos/apple-one/logo__dcojfwkzna2q_large_2x.png';
+ // alternative API: need cors
+ Konva.Image.fromURL('https://www.apple.com/v/home/x/images/heroes/apple-event-april/hero_endframe__8xosbwdvpaqe_small_2x.jpg', function (darthNode) {
+  darthNode.setAttrs({
+    x: 20,
+    y: 50,
+    scaleX: 0.5,
+    scaleY: 0.5,
+  });
+  layer.add(darthNode);
+  layer.batchDraw();
+});
