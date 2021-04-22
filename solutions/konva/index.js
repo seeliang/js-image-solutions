@@ -73,9 +73,9 @@ function downloadURI(uri, name) {
   document.body.removeChild(link);
   delete link;
 }
-const imageURL = layer.toDataURL();
+
 
 const downloadAction = () => {
-
+  const imageURL = layer.toDataURL();
   downloadURI(imageURL,'thing.png')
 }
