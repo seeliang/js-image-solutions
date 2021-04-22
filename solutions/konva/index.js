@@ -41,9 +41,13 @@ layer.draw();
    layer.add(apple);
    layer.batchDraw();
  };
+ // alternative API: 
+ 
+ // remote is not working, will need cors
+ const remoteImage = 'https://www.apple.com/v/home/x/images/heroes/apple-event-april/hero_endframe__8xosbwdvpaqe_small_2x.jpg'
+ const localImage = './fire.png'
 
- // alternative API: not worknig has need cors
- Konva.Image.fromURL('https://www.apple.com/v/home/x/images/heroes/apple-event-april/hero_endframe__8xosbwdvpaqe_small_2x.jpg', 
+ Konva.Image.fromURL(localImage, 
  function (darthNode) {
   darthNode.setAttrs({
     x: 20,
@@ -70,5 +74,6 @@ function downloadURI(uri, name) {
 const imageURL = layer.toDataURL();
 
 const downloadAction = () => {
+
   downloadURI(imageURL,'thing.png')
 }
