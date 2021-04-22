@@ -41,8 +41,10 @@ layer.draw();
    layer.add(apple);
    layer.batchDraw();
  };
- // alternative API: need cors
- Konva.Image.fromURL('https://www.apple.com/v/home/x/images/heroes/apple-event-april/hero_endframe__8xosbwdvpaqe_small_2x.jpg', function (darthNode) {
+
+ // alternative API: not worknig has need cors
+ Konva.Image.fromURL('https://www.apple.com/v/home/x/images/heroes/apple-event-april/hero_endframe__8xosbwdvpaqe_small_2x.jpg', 
+ function (darthNode) {
   darthNode.setAttrs({
     x: 20,
     y: 50,
@@ -52,3 +54,21 @@ layer.draw();
   layer.add(darthNode);
   layer.batchDraw();
 });
+
+// generate image for download
+
+// function from https://stackoverflow.com/a/15832662/512042
+function downloadURI(uri, name) {
+  var link = document.createElement('a');
+  link.download = name;
+  link.href = uri;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  delete link;
+}
+const imageURL = layer.toDataURL();
+
+const downloadAction = () => {
+  downloadURI(imageURL,'thing.png')
+}
