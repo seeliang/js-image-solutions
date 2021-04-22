@@ -1,3 +1,6 @@
+const remoteImage = 'https://www.apple.com/v/home/x/images/heroes/apple-event-april/hero_endframe__8xosbwdvpaqe_small_2x.jpg'
+const localImage = './fire.png'
+const corsImage = 'http://127.0.0.1:8080/fire.png'
 var stage = new Konva.Stage({
   container: 'container',   // id of container <div>
   width: 500,
@@ -27,7 +30,7 @@ layer.draw();
 
  // main API: no need cors
  var imageObj = new Image();
- imageObj.src = 'https://www.apple.com/v/home/t/images/logos/apple-one/logo__dcojfwkzna2q_large_2x.png';
+ imageObj.src = corsImage;
  imageObj.onload = function () {
    var apple = new Konva.Image({
       x: 100,
@@ -36,18 +39,17 @@ layer.draw();
      width: 306,
      height: 88,
    });
+   apple.crossOrigin = 'Anonymous';
 
    // add the shape to the layer
    layer.add(apple);
+   console.log(layer.toDataURL());
    layer.batchDraw();
  };
  // alternative API: 
  
- // remote is not working, will need cors
- const remoteImage = 'https://www.apple.com/v/home/x/images/heroes/apple-event-april/hero_endframe__8xosbwdvpaqe_small_2x.jpg'
- const localImage = './fire.png'
-
- Konva.Image.fromURL(localImage, 
+ // remote will not work, need server allows cors
+ Konva.Image.fromURL(corsImage, 
  function (darthNode) {
   darthNode.setAttrs({
     x: 20,
