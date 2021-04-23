@@ -1,3 +1,6 @@
+// go to http://localhost:8080/ for cors test
+
+
 const remoteImage = 'https://www.apple.com/v/home/x/images/heroes/apple-event-april/hero_endframe__8xosbwdvpaqe_small_2x.jpg'
 const localImage = './fire.png'
 const corsImage = 'http://127.0.0.1:8080/fire.png'
@@ -28,7 +31,8 @@ stage.add(layer);
 // draw the image
 layer.draw();
 
- // main API: no need cors
+ // main API: render no need cors
+const loadWithMain = () => {
  var imageObj = new Image();
  imageObj.src = corsImage;
  imageObj.onload = function () {
@@ -43,12 +47,16 @@ layer.draw();
 
    // add the shape to the layer
    layer.add(apple);
-   console.log(layer.toDataURL());
    layer.batchDraw();
  };
+}
+
+// toDataUrl will complain CORS
+// loadWithMain();
+
  // alternative API: 
- 
- // remote will not work, need server allows cors
+ // render with remote will not work, need server allows cors
+ // toDataUrl will work
  Konva.Image.fromURL(corsImage, 
  function (darthNode) {
   darthNode.setAttrs({
